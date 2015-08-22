@@ -501,6 +501,11 @@ public class RushCore {
 
     private static final int SAVE_GROUP_SIZE = 1000;
     private void save(List<? extends Rush> objects, final RushQue que) {
+        if (objects == null || objects.size() == 0) {
+          queProvider.queComplete(que);
+          return;
+        }
+
         for (int i = 0; i < Math.ceil(objects.size() / ((float)SAVE_GROUP_SIZE)); i ++) {
 
             int start = i * SAVE_GROUP_SIZE;
